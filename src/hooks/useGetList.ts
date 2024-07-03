@@ -1,21 +1,17 @@
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 
-type useGetListProps = { data: Array<any>; status: string };
-
-const useGetList = (
-  url: string,
-  queryKey: string,
-): {
-  data: any | undefined;
+type useGetListProps = {
+  data: Array<any>;
   status: "error" | "success" | "pending";
-} => {
+};
+
+const useGetList = (url: string, queryKey: string): useGetListProps => {
   const getList = async (): Promise<any> => {
     const response = await axios.get<string>(url);
     return response.data;
   };
 
-  // @ts-ignore
   const { data, status } = useQuery<any>({
     queryKey: [queryKey],
     queryFn: () => getList(),
