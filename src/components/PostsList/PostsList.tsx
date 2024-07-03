@@ -8,7 +8,7 @@ type PostsListProps = {
 };
 
 const PostsList: React.FC<PostsListProps> = ({ filteredData, status }) => {
-  if (status === "loading") {
+  if (status === "pending") {
     return (
       <div className="text-center">
         <div role="status">
